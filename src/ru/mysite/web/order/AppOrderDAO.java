@@ -1,11 +1,13 @@
-package ru.mysite.web;
+package ru.mysite.web.order;
 
+
+import ru.mysite.web.AppDAOGeneral;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppOrderDAO extends AppDAOtest {
+public class AppOrderDAO extends AppDAOGeneral {
 
     public void create(Orders orders){
         String sql = "insert into orders(order_id, date, amount, status) values (?,?,?,?)";
@@ -38,6 +40,8 @@ public class AppOrderDAO extends AppDAOtest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            closeConnection(connection);
         }
         return orderses;
     }
@@ -56,6 +60,8 @@ public class AppOrderDAO extends AppDAOtest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            closeConnection(connection);
         }
         return clients;
     }

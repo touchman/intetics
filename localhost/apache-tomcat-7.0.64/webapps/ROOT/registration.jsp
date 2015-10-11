@@ -1,5 +1,5 @@
-<%@ page import="ru.mysite.web.Client" %>
-<%@ page import="ru.mysite.web.AppDAO" %>
+<%@ page import="ru.mysite.web.client.Client" %>
+<%@ page import="ru.mysite.web.client.AppDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

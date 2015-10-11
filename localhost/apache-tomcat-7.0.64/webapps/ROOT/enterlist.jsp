@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="ru.mysite.web.AppCardDAO" %>
-<%@ page import="ru.mysite.web.ClientCard" %>
+<%@ page import="ru.mysite.web.card.AppCardDAO" %>
+<%@ page import="ru.mysite.web.card.ClientCard" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

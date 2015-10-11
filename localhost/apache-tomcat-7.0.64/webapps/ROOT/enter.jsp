@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="ru.mysite.web.AppCardDAO" %>
-<%@ page import="ru.mysite.web.ClientCard" %>
+<%@ page import="ru.mysite.web.card.AppCardDAO" %>
+<%@ page import="ru.mysite.web.card.ClientCard" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -21,7 +21,7 @@
         String vin = request.getParameter("vin");
         String id = request.getParameter("id");
         String action = request.getParameter("action");
-        String access = "close";
+
         List<ClientCard> applicationList = dao.selectAll();
 
 
@@ -29,9 +29,15 @@
         if ("create".equals(action)) {
             int cardInt = Integer.parseInt(card);
             int orderInt = Integer.parseInt(order);
-            app = new ClientCard(cardInt ,orderInt, make, model, year, vin);
-            dao.create(app);
-            applicationList = dao.selectAll();
+            if(year.equals("")){
+                app = new ClientCard(cardInt ,orderInt, make, model, "1900-01-01", vin);
+                dao.create(app);
+                applicationList = dao.selectAll();
+            } else {
+                app = new ClientCard(cardInt ,orderInt, make, model, year, vin);
+                dao.create(app);
+                applicationList = dao.selectAll();
+            }
         } else if ("remove".equals(action)) {
             int idInt = Integer.parseInt(id);
             dao.remove(idInt);

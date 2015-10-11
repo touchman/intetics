@@ -1,11 +1,13 @@
-package ru.mysite.web;
+package ru.mysite.web.card;
 
+
+import ru.mysite.web.AppDAOGeneral;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppCardDAO extends AppDAOtest {
+public class AppCardDAO extends AppDAOGeneral {
 
     public void create(ClientCard clientCard){
         String sql = "insert into client_card(card_id, order_id, make, model, year, vin) values (?,?,?,?,?,?)";
@@ -40,6 +42,8 @@ public class AppCardDAO extends AppDAOtest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            closeConnection(connection);
         }
         return clients;
     }
@@ -57,6 +61,8 @@ public class AppCardDAO extends AppDAOtest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            closeConnection(connection);
         }
         return clients;
     }

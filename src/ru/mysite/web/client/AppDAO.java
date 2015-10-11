@@ -1,11 +1,13 @@
-package ru.mysite.web;
+package ru.mysite.web.client;
 
+
+import ru.mysite.web.AppDAOGeneral;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppDAO extends AppDAOtest {
+public class AppDAO extends AppDAOGeneral {
 
     public void create(Client client){
         String sql = "insert into client(card_id, fname,lname, date, address, phone, email) values (?,?,?,?,?,?,?)";
@@ -41,6 +43,8 @@ public class AppDAO extends AppDAOtest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnection(connection);
         }
         return clients;
     }

@@ -1,5 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ru.mysite.web.*" %>
+<%@ page import="ru.mysite.web.order.AppOrderDAO" %>
+<%@ page import="ru.mysite.web.order.Orders" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

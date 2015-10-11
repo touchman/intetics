@@ -1,4 +1,6 @@
-package ru.mysite.web;
+package ru.mysite.web.servlets;
+
+import ru.mysite.web.client.AppDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

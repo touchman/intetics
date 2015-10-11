@@ -1,5 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ru.mysite.web.*" %>
+<%@ page import="ru.mysite.web.order.AppOrderDAO" %>
+<%@ page import="ru.mysite.web.order.Orders" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -20,12 +22,19 @@
         String action = request.getParameter("action");
         List<Orders> applicationList = dao.selectAll();
         Orders app = new Orders();
-        if ("create".equals(action)) {
+        if ("create".equals(action) && Integer.parseInt(amount) <= 10000) {
             int amountInt = Integer.parseInt(amount);
             int orderInt = Integer.parseInt(order);
-            app = new Orders(orderInt, date, amountInt, status);
-            dao.create(app);
-            applicationList = dao.selectAll();
+            if(date.equals("")){
+                app = new Orders(orderInt, "1900-01-01", amountInt, status);
+                dao.create(app);
+                applicationList = dao.selectAll();
+            }else {
+                app = new Orders(orderInt, date, amountInt, status);
+                dao.create(app);
+                applicationList = dao.selectAll();
+            }
+
         } else if ("remove".equals(action)) {
             int idInt = Integer.parseInt(id);
             dao.remove(idInt);

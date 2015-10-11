@@ -1,8 +1,8 @@
 <%@ page import="java.util.List" %>
-<%@ page import="ru.mysite.web.AppCardDAO" %>
-<%@ page import="ru.mysite.web.ClientCard" %>
-<%@ page import="ru.mysite.web.AppDAO" %>
-<%@ page import="ru.mysite.web.Client" %>
+<%@ page import="ru.mysite.web.card.AppCardDAO" %>
+<%@ page import="ru.mysite.web.card.ClientCard" %>
+<%@ page import="ru.mysite.web.client.AppDAO" %>
+<%@ page import="ru.mysite.web.client.Client" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -27,9 +27,15 @@
 
         Client app = new Client();
         if ("create".equals(action)) {
-            int cardInt = Integer.parseInt(cardId);
-            app = new Client(cardInt, fname, lname, date, address, phone, email);
-            dao.create(app);
+            if(date.equals("")){
+                int cardInt = Integer.parseInt(cardId);
+                app = new Client(cardInt, fname, lname, "1900-01-01", address, phone, email);
+                dao.create(app);
+            } else {
+                int cardInt = Integer.parseInt(cardId);
+                app = new Client(cardInt, fname, lname, date, address, phone, email);
+                dao.create(app);
+            }
         } else if ("remove".equals(action)) {
             int idInt = Integer.parseInt(id);
             dao.remove(idInt);

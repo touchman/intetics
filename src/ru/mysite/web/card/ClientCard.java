@@ -1,4 +1,4 @@
-package ru.mysite.web;
+package ru.mysite.web.card;
 
 
 public class ClientCard {

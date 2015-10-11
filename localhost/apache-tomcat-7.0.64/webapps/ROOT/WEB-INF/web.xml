@@ -6,7 +6,7 @@
     
         <servlet>
             <servlet-name>Start</servlet-name>
-            <servlet-class>ru.mysite.web.StartServlet</servlet-class>
+            <servlet-class>ru.mysite.web.servlets.StartServlet</servlet-class>
         </servlet>
         <servlet-mapping>
             <servlet-name>Start</servlet-name>

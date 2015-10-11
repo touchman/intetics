@@ -1,11 +1,11 @@
 package ru.mysite.web;
 
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class AppDAOtest {
+public class AppDAOGeneral {
 
     public Connection getConnection(){
         String connectionUrl = "jdbc:mysql://localhost:3306/service";
