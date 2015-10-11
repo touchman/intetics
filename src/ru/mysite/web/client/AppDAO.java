@@ -23,6 +23,7 @@ public class AppDAO extends AppDAOGeneral {
             statement.setString(6, client.getPhone());
             statement.setString(7, client.getEmail());
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -41,6 +42,8 @@ public class AppDAO extends AppDAOGeneral {
                 clients.add(new Client(result.getInt("id"), result.getInt("card_id"), result.getString("fname"), result.getString("lname"),
                         result.getString("date"), result.getString("address"), result.getString("phone"), result.getString("email")));
             }
+            statement.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -57,6 +60,7 @@ public class AppDAO extends AppDAOGeneral {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -84,6 +88,8 @@ public class AppDAO extends AppDAOGeneral {
                 String email = set.getString("email");
                 app = new Client(id, cardId, firstName, lastName, date, address, phone, email);
             }
+            statement.close();
+            set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -105,6 +111,8 @@ public class AppDAO extends AppDAOGeneral {
             if(set.next()){
                 out = set.getString("card_id");
             }
+            statement.close();
+            set.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,6 +132,8 @@ public class AppDAO extends AppDAOGeneral {
             if(set.next()){
                 out = set.getString("max(id)");
             }
+            statement.close();
+            set.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,6 +158,7 @@ public class AppDAO extends AppDAOGeneral {
             statement.setString(7, application.getEmail());
             statement.setInt(8, id);
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

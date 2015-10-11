@@ -57,6 +57,7 @@
 
     %>
     <input type="hidden" name="id" value="<%=app.getId()%>"/>
+    <input type="hidden" name="order" value="<%= request.getParameter("order")%>"/>
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
     </a>
@@ -76,7 +77,6 @@
 
     <table class="table">
         <tr>
-            <td>order_id<input name="order" class="form-control" value="<%=app.getOrder_id()%>"/></td>
             <td>date<input name="date" type="date" class="form-control" value="<%=app.getDate()%>"/></td>
             <td>amount(0-10000$)<input name="amount" class="form-control" value="<%=app.getAmount()%>"/></td>
             <td>status(Compl/Progr/Cancel)<input name="status" type="text" list="stats" class="form-control" value="<%=app.getStatus()%>"/>
@@ -98,8 +98,6 @@
             for (Orders application1 : applicationList) {
         %>
         <tr>
-            <td><%=application1.getOrder_id()%>
-            </td>
             <td><%=application1.getDate()%>
             </td>
             <td><%=application1.getAmount()%>

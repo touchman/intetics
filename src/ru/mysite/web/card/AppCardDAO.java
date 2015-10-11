@@ -10,18 +10,18 @@ import java.util.List;
 public class AppCardDAO extends AppDAOGeneral {
 
     public void create(ClientCard clientCard){
-        String sql = "insert into client_card(card_id, order_id, make, model, year, vin) values (?,?,?,?,?,?)";
+        String sql = "insert into client_card(card_id, make, model, year, vin) values (?,?,?,?,?)";
         Connection connection = getConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, clientCard.getCard_id());
-            statement.setInt(2, clientCard.getOrder_id());
-            statement.setString(3, clientCard.getMake());
-            statement.setString(4, clientCard.getModel());
-            statement.setString(5, clientCard.getYear());
-            statement.setString(6, clientCard.getVin());
+            statement.setString(2, clientCard.getMake());
+            statement.setString(3, clientCard.getModel());
+            statement.setString(4, clientCard.getYear());
+            statement.setString(5, clientCard.getVin());
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -37,9 +37,11 @@ public class AppCardDAO extends AppDAOGeneral {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
             while (result.next()){
-                clients.add(new ClientCard(result.getInt("id"),result.getInt("card_id"),result.getInt("order_id"), result.getString("make"),
+                clients.add(new ClientCard(result.getInt("id"),result.getInt("card_id"), result.getString("make"),
                         result.getString("model"), result.getString("year"), result.getString("vin")));
             }
+            statement.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -56,9 +58,11 @@ public class AppCardDAO extends AppDAOGeneral {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             while (result.next()){
-                clients.add(new ClientCard(result.getInt("id"), result.getInt("card_id"), result.getInt("order_id"), result.getString("make"),
+                clients.add(new ClientCard(result.getInt("id"), result.getInt("card_id"), result.getString("make"),
                         result.getString("model"), result.getString("year"), result.getString("vin")));
             }
+            statement.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -75,6 +79,7 @@ public class AppCardDAO extends AppDAOGeneral {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -94,13 +99,14 @@ public class AppCardDAO extends AppDAOGeneral {
             if(set.next()){
                 id = set.getInt("id");
                 int cardId = set.getInt("card_id");
-                int orderId = set.getInt("order_id");
                 String make = set.getString("make");
                 String model = set.getString("model");
                 String year = set.getString("year");
                 String vin = set.getString("vin");
-                app = new ClientCard(id, cardId, orderId, make, model, year, vin);
+                app = new ClientCard(id, cardId, make, model, year, vin);
             }
+            statement.close();
+            set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -121,13 +127,14 @@ public class AppCardDAO extends AppDAOGeneral {
             if(set.next()){
                 id = set.getInt("id");
                 int cardId = set.getInt("card_id");
-                int orderId = set.getInt("order_id");
                 String make = set.getString("make");
                 String model = set.getString("model");
                 String year = set.getString("year");
                 String vin = set.getString("vin");
-                app = new ClientCard(id, cardId, orderId, make, model, year, vin);
+                app = new ClientCard(id, cardId, make, model, year, vin);
             }
+            statement.close();
+            set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -137,19 +144,19 @@ public class AppCardDAO extends AppDAOGeneral {
     }
 
     public void update(int id, ClientCard application){
-        String sql = "update client_card set card_id=?, order_id=?, make=?, model=?, year=?, vin=? where id=?";
+        String sql = "update client_card set card_id=?, make=?, model=?, year=?, vin=? where id=?";
 
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, application.getCard_id());
-            statement.setInt(2, application.getOrder_id());
-            statement.setString(3, application.getMake());
-            statement.setString(4, application.getModel());
-            statement.setString(5, application.getYear() );
-            statement.setString(6, application.getVin());
-            statement.setInt(7, id);
+            statement.setString(2, application.getMake());
+            statement.setString(3, application.getModel());
+            statement.setString(4, application.getYear() );
+            statement.setString(5, application.getVin());
+            statement.setInt(6, id);
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

@@ -69,7 +69,6 @@
     </a>
     <table class="table">
         <tr>
-            <td>card_id<input name="card_id" class="form-control" value="<%=app.getCard_id()%>"/></td>
             <td>fname <input name="fname" class="form-control" value="<%=app.getFirstName()%>"/></td>
             <td>lname<input name="lname" class="form-control" value="<%=app.getLastName()%>"/></td>
             <td>date<input name="date" type="date" class="form-control" value="<%=app.getDate()%>"/></td>
@@ -89,8 +88,6 @@
             for (Client application1 : applicationList) {
         %>
         <tr>
-            <td><%=application1.getCard_id()%>
-            </td>
             <td><%=application1.getFirstName()%>
             </td>
             <td><%=application1.getLastName()%>
@@ -110,7 +107,7 @@
                 <a class="btn btn-warning" href="clients.jsp?action=select&id=<%=application1.getId()%>">
                     Select
                 </a>
-                <a class="btn btn-success" href="enterlist.jsp?action=execute&id=<%=application1.getCard_id()%>&card=<%=application1.getCard_id()%>">
+                <a class="btn btn-success" href="enterlist.jsp?action=execute&id=<%=application1.getId()%>&card=<%=application1.getId()%>">
                     Cars
                 </a>
             </td>

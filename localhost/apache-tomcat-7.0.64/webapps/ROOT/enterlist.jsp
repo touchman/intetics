@@ -14,7 +14,6 @@
     <%
         AppCardDAO dao = new AppCardDAO();
         String card = request.getParameter("card");
-        String order = request.getParameter("order");
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         String year = request.getParameter("year");
@@ -28,8 +27,7 @@
 
         ClientCard app = new ClientCard();
         if ("create".equals(action)) {
-            int orderInt = Integer.parseInt(order);
-            app = new ClientCard(cardInt ,orderInt, make, model, year, vin);
+            app = new ClientCard(cardInt, make, model, year, vin);
             dao.create(app);
             applicationList = dao.selectData(cardInt);
         } else if ("remove".equals(action)) {
@@ -38,8 +36,7 @@
         } else if ("select".equals(action)) {
             app = dao.selectOneCard(idInt);
         } else if ("update".equals(action)) {
-            int orderInt = Integer.parseInt(order);
-            app = new ClientCard(cardInt ,orderInt, make, model, year, vin);
+            app = new ClientCard(cardInt, make, model, year, vin);
             dao.update(idInt, app);
             applicationList = dao.selectData(cardInt);
         } else if("execute".equals(action)){
@@ -48,6 +45,7 @@
 
     %>
     <input type="hidden" name="id" value="<%=app.getId()%>"/>
+    <input type="hidden" name="card" value="<%=request.getParameter("card")%>"/>
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
     </a>
@@ -65,8 +63,6 @@
     </a>
     <table class="table">
         <tr>
-            <td>card_id<input name="card" class="form-control" value="<%=app.getCard_id()%>"/></td>
-            <td>order_id<input name="order" class="form-control" value="<%=app.getOrder_id()%>"/></td>
             <td>make<input name="make" class="form-control" value="<%=app.getMake()%>"/></td>
             <td>model<input name="model" class="form-control" value="<%=app.getModel()%>"/></td>
             <td>year<input name="year" type="date" class="form-control" value="<%=app.getYear()%>"/></td>
@@ -84,10 +80,6 @@
             for (ClientCard application1 : applicationList) {
         %>
         <tr>
-            <td><%=application1.getCard_id()%>
-            </td>
-            <td><%=application1.getOrder_id()%>
-            </td>
             <td><%=application1.getMake()%>
             </td>
             <td><%=application1.getModel()%>
@@ -103,7 +95,7 @@
                 <a class="btn btn-warning" href="enterlist.jsp?action=select&id=<%=application1.getId()%>&card=<%=application1.getCard_id()%>">
                     Select
                 </a>
-                <a class="btn btn-success" href="orderslist.jsp?action=execute&id=<%=application1.getOrder_id()%>&order=<%=application1.getOrder_id()%>">
+                <a class="btn btn-success" href="orderslist.jsp?action=execute&id=<%=application1.getId()%>&order=<%=application1.getId()%>">
                     Orders
                 </a>
             </td>

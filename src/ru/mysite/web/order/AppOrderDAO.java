@@ -20,6 +20,7 @@ public class AppOrderDAO extends AppDAOGeneral {
             statement.setInt(3, orders.getAmount());
             statement.setString(4, orders.getStatus());
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -38,6 +39,8 @@ public class AppOrderDAO extends AppDAOGeneral {
                 orderses.add(new Orders(result.getInt("id") ,result.getInt("order_id"),result.getString("date"), result.getInt("amount"),
                         result.getString("status")));
             }
+            statement.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -58,6 +61,8 @@ public class AppOrderDAO extends AppDAOGeneral {
                 clients.add(new Orders(result.getInt("id"),result.getInt("order_id"),result.getString("date"), result.getInt("amount"),
                         result.getString("status")));
             }
+            statement.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -74,6 +79,7 @@ public class AppOrderDAO extends AppDAOGeneral {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -98,6 +104,8 @@ public class AppOrderDAO extends AppDAOGeneral {
                 String status = set.getString("status");
                 app = new Orders(id, order_id, date, amount, status);
             }
+            statement.close();
+            set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -123,6 +131,8 @@ public class AppOrderDAO extends AppDAOGeneral {
                 String status = set.getString("status");
                 app = new Orders(id, order_id, date, amount, status);
             }
+            statement.close();
+            set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -143,6 +153,7 @@ public class AppOrderDAO extends AppDAOGeneral {
             statement.setString(4, application.getStatus());
             statement.setInt(5, id);
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
