@@ -11,12 +11,6 @@
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
     </a>
-    <a class="bnt btn-warning" href="enter.jsp">
-        Cars
-    </a>
-    <a class="bnt btn-primary" href="orders.jsp">
-        Orders
-    </a>
     <a class="bnt btn-warning" href="index.jsp">
         Checker
     </a>

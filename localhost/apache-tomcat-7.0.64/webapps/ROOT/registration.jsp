@@ -18,20 +18,19 @@
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-        String cardId = dao.selectLastCardId();
-        int cardInt = Integer.parseInt(cardId);
-        Client client = new Client(cardInt+1, fname, lname, birth, address, phone, email);
-        if("Registration".equals(request.getParameter("register")))
-        dao.create(client);
+        Client client = null;
+        if("Registration".equals(request.getParameter("register"))){
+            if(birth.equals("")) {
+                client = new Client(fname, lname, "1900-01-01", address, phone, email);
+            } else {
+                client = new Client(fname, lname, birth, address, phone, email);
+            }
+            dao.create(client);
+        }
+
     %>
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
-    </a>
-    <a class="bnt btn-warning" href="enter.jsp">
-        Cars
-    </a>
-    <a class="bnt btn-primary" href="orders.jsp">
-        Orders
     </a>
     <a class="bnt btn-warning" href="index.jsp">
         Checker

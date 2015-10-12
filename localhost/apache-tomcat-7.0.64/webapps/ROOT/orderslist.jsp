@@ -25,11 +25,17 @@
         List<Orders> applicationList = dao.selectData(orderInt);
 
         Orders app = new Orders();
-        if ("create".equals(action)) {
+        if ("create".equals(action) && Integer.parseInt(amount) <= 10000) {
             int amountInt = Integer.parseInt(amount);
-            app = new Orders(orderInt, date, amountInt, status);
-            dao.create(app);
-            applicationList = dao.selectData(orderInt);
+            if(date.equals("")){
+                app = new Orders(orderInt, "1900-01-01", amountInt, status);
+                dao.create(app);
+                applicationList = dao.selectData(orderInt);
+            }else {
+                app = new Orders(orderInt, date, amountInt, status);
+                dao.create(app);
+                applicationList = dao.selectData(orderInt);
+            }
         } else if ("remove".equals(action)) {
             dao.remove(idInt);
             applicationList = dao.selectData(orderInt);
@@ -52,12 +58,6 @@
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
     </a>
-    <a class="bnt btn-warning" href="enter.jsp">
-        Cars
-    </a>
-    <a class="bnt btn-primary" href="orders.jsp">
-        Orders
-    </a>
     <a class="bnt btn-warning" href="index.jsp">
         Checker
     </a>
@@ -70,12 +70,17 @@
         <tr>
             <td>date<input name="date" type="date" class="form-control" value="<%=app.getDate()%>"/></td>
             <td>amount(0-10000$)<input name="amount" class="form-control" value="<%=app.getAmount()%>"/></td>
-            <td>status(Compl/Progr/Cancel)<input name="status" type="text" list="stats" class="form-control" value="<%=app.getStatus()%>"/>
+            <td>status(Compl/Progr/Cancel)<%--<input name="status" type="text" list="stats" class="form-control" value="<%=app.getStatus()%>"/>
                 <datalist id="stats">
                     <option value="Cancel">
                     <option value="Progr">
                     <option value="Compl">
-                </datalist></td>
+                </datalist></td>--%>
+                <select name="status" class="form-control">
+                    <option value="Cancel">Cancel</option>
+                    <option value="Progr">Progr</option>
+                    <option value="Compl">Compl</option>
+                </select>
             <td>
                 <button class="btn btn-success" name="action" value="create">
                     Add

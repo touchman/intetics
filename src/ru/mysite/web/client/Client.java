@@ -4,7 +4,6 @@ package ru.mysite.web.client;
 
 public class Client {
     private int id;
-    private int card_id;
     private String firstName;
     private String lastName;
     private String date;
@@ -16,9 +15,8 @@ public class Client {
         super();
     }
 
-    public Client(int id, int card_id, String firstName, String lastName, String date, String address, String phone, String email) {
+    public Client(int id, String firstName, String lastName, String date, String address, String phone, String email) {
         this.id = id;
-        this.card_id = card_id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.date = date;
@@ -27,22 +25,13 @@ public class Client {
         this.email = email;
     }
 
-    public Client(int card_id, String firstName, String lastName, String date, String address, String phone, String email) {
-        this.card_id = card_id;
+    public Client(String firstName, String lastName, String date, String address, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.date = date;
         this.address = address;
         this.phone = phone;
         this.email = email;
-    }
-
-    public int getCard_id() {
-        return card_id;
-    }
-
-    public void setCard_id(int card_id) {
-        this.card_id = card_id;
     }
 
     public int getId() {

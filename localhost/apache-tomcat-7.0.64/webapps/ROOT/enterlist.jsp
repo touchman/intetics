@@ -27,9 +27,15 @@
 
         ClientCard app = new ClientCard();
         if ("create".equals(action)) {
-            app = new ClientCard(cardInt, make, model, year, vin);
-            dao.create(app);
-            applicationList = dao.selectData(cardInt);
+            if(year.equals("")){
+                app = new ClientCard(cardInt, make, model, "1900-01-01", vin);
+                dao.create(app);
+                applicationList = dao.selectData(cardInt);
+            } else {
+                app = new ClientCard(cardInt, make, model, year, vin);
+                dao.create(app);
+                applicationList = dao.selectData(cardInt);
+            }
         } else if ("remove".equals(action)) {
             dao.remove(idInt);
             applicationList = dao.selectData(cardInt);
@@ -48,12 +54,6 @@
     <input type="hidden" name="card" value="<%=request.getParameter("card")%>"/>
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
-    </a>
-    <a class="bnt btn-warning" href="enter.jsp">
-        Cars
-    </a>
-    <a class="bnt btn-primary" href="orders.jsp">
-        Orders
     </a>
     <a class="bnt btn-warning" href="index.jsp">
     Checker

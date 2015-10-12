@@ -73,13 +73,18 @@ public class AppCardDAO extends AppDAOGeneral {
 
     public void remove(int id){
         String sql = "delete from client_card where id=?";
+        String sqlOrders = "delete from orders where order_id=?";
 
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statementOrders = connection.prepareStatement(sqlOrders);
             statement.setInt(1, id);
+            statementOrders.setInt(1, id);
             statement.execute();
+            statementOrders.execute();
             statement.close();
+            statementOrders.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

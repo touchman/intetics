@@ -15,7 +15,6 @@
     <center><h1>Clients</h1></center>
     <%
         AppDAO dao = new AppDAO();
-        String cardId = request.getParameter("card_id");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
         String date = request.getParameter("date");
@@ -28,12 +27,10 @@
         Client app = new Client();
         if ("create".equals(action)) {
             if(date.equals("")){
-                int cardInt = Integer.parseInt(cardId);
-                app = new Client(cardInt, fname, lname, "1900-01-01", address, phone, email);
+                app = new Client(fname, lname, "1900-01-01", address, phone, email);
                 dao.create(app);
             } else {
-                int cardInt = Integer.parseInt(cardId);
-                app = new Client(cardInt, fname, lname, date, address, phone, email);
+                app = new Client(fname, lname, date, address, phone, email);
                 dao.create(app);
             }
         } else if ("remove".equals(action)) {
@@ -44,8 +41,7 @@
             app = dao.selectOne(idInt);
         } else if ("update".equals(action)) {
             int idInt = Integer.parseInt(id);
-            int cardInt = Integer.parseInt(cardId);
-            app = new Client(cardInt, fname, lname, date, address, phone, email);
+            app = new Client(fname, lname, date, address, phone, email);
             dao.update(idInt, app);
         }
 
@@ -54,12 +50,6 @@
     <input type="hidden" name="id" value="<%=app.getId()%>"/>
     <a class="bnt btn-primary" href="clients.jsp">
         Clients
-    </a>
-    <a class="bnt btn-warning" href="enter.jsp">
-        Cars
-    </a>
-    <a class="bnt btn-primary" href="orders.jsp">
-        Orders
     </a>
     <a class="bnt btn-warning" href="index.jsp">
         Checker
