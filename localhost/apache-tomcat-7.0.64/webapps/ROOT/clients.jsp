@@ -44,6 +44,22 @@
             app = new Client(fname, lname, date, address, phone, email);
             dao.update(idInt, app);
         }
+        
+        if (app.getFirstName() == null) {
+            app.setFirstName("");
+        }
+        if (app.getLastName() == null) {
+            app.setLastName("");
+        }
+        if (app.getAddress()== null) {
+            app.setAddress("");
+        }
+        if (app.getPhone() == null) {
+            app.setPhone("");
+        }
+        if (app.getEmail() == null) {
+            app.setEmail("");
+        }
 
         List<Client> applicationList = dao.selectAll();
     %>
