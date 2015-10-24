@@ -48,6 +48,16 @@
         } else if("execute".equals(action)){
             applicationList = dao.selectData(cardInt);
         }
+        
+        if (app.getMake() == null) {
+            app.setMake("");
+        }
+        if (app.getModel() == null) {
+            app.setModel("");
+        }
+        if (app.getVin()== null) {
+            app.setVin("");
+        }
 
     %>
     <input type="hidden" name="id" value="<%=app.getId()%>"/>
